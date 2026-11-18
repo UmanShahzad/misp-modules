@@ -1610,6 +1610,38 @@ Module to access Intel 471
 
 -----
 
+#### [InternetData Lookup](https://github.com/MISP/misp-modules/tree/main/misp_modules/modules/expansion/internetdata.py)
+
+<img src=logos/internetdata.png height=60>
+
+An expansion and hover module to look up an IP address or an AS with InternetData: its location, network, the organization it is registered to, its abuse contact, and Tor, relay, VPN, proxy, hosting, anycast, carrier and satellite detection. No API key is needed.
+[[source code](https://github.com/MISP/misp-modules/tree/main/misp_modules/modules/expansion/internetdata.py)]
+
+- **features**:
+>The module takes an IP address or an AS attribute as input and looks it up with the [InternetData API](https://internetdata.io/api).
+>
+>For an IP address it returns a geolocation object, an asn object with the announced prefix, and an internetdata-ip object with the address's reverse DNS hostname, the organization it is registered to, its abuse contact and the detection flags that are set, each with its provider where one is known, its confidence and the date the address was last seen as such. For an AS it returns an asn object with its name and country.
+>
+>The `api_key` is optional. Without one the API answers the country, the network, the organization, the hostname, the abuse email, and the Tor, privacy relay, anycast, mobile carrier, satellite, SSH, SMTP, web, DNS resolver and BitTorrent flags. With a key it also answers the VPN, hosting, CDN and residential, datacenter, mobile and public proxy flags with their providers, and the city, region and coordinates. The key is sent in the Authorization header. Private and reserved addresses are not looked up. Terms: https://internetdata.io/terms, privacy: https://internetdata.io/privacy.
+
+- **config**:
+>api_key
+
+- **input**:
+>An IP address attribute (ip-src or ip-dst), or an AS attribute.
+
+- **output**:
+>For an IP address, a geolocation object, an asn object, and an internetdata-ip object with the hostname, the organization, the abuse contact and the detection flags that are set. For an AS, an asn object.
+
+- **references**:
+> - https://internetdata.io/api
+> - https://docs.internetdata.io
+
+- **requirements**:
+>An InternetData API key (optional: without one the API answers everything but the VPN, hosting, CDN and proxy flags and the city-level location)
+
+-----
+
 #### [IP2Location.io Lookup](https://github.com/MISP/misp-modules/tree/main/misp_modules/modules/expansion/ip2locationio.py)
 
 <img src=logos/ip2locationio.png height=60>
